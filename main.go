@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type BitSet struct {
 	bits []uint64
 }
@@ -47,5 +49,24 @@ func (bs *BitSet) Remove(num uint32) {
 func main() {
 	size := uint32(65) // Total numbers we want to support
 	bitSet := NewBitSet(size)
+	// Add numbers to the BitSet
+	bitSet.Add(6)
+	bitSet.Add(65)
+	bitSet.Add(123456789)
+
+	// Check if numbers are present in the BitSet
+	fmt.Println("Is 6 present?", bitSet.Contains(6))                 // Should print: true
+	fmt.Println("Is 65 present?", bitSet.Contains(65))               // Should print: true
+	fmt.Println("Is 123456789 present?", bitSet.Contains(123456789)) // Should print: true
+	fmt.Println("Is 7 present?", bitSet.Contains(7))                 // Should print: false
+
+	// Remove numbers from the BitSet
+	bitSet.Remove(6)
+	bitSet.Remove(123456789)
+
+	// Check again if numbers are present in the BitSet
+	fmt.Println("Is 6 present?", bitSet.Contains(6))                 // Should print: false
+	fmt.Println("Is 65 present?", bitSet.Contains(65))               // Should print: true
+	fmt.Println("Is 123456789 present?", bitSet.Contains(123456789)) // Should print: false
 
 }
